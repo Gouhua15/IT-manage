@@ -1,0 +1,110 @@
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+void E();
+void T();
+void G();
+void F();
+void S();
+int i;
+int num;
+string str;
+int main()
+{
+    i = 0;
+    num = 0;
+    cin &gt;&gt; str;
+    E();
+    if (str[i] == '#')
+    {
+        printf("accept\n");
+    }
+    else
+    {
+        printf("error\n");
+    }
+}
+void E()
+{
+    if (str[i] == 'i' || str[i] == '(')
+    {
+        printf("%d E--&gt;TG\n", num++);
+        T();
+        G();
+    }
+    else
+    {
+        printf("error\n");
+        exit(0);
+    }
+}
+void T()
+{
+    if (str[i] == 'i' || str[i] == '(')
+    {
+        printf("%d T--&gt;FS\n", num++);
+        F();
+        S();
+    }
+    else
+    {
+        printf("error\n");
+        exit(0);
+    }
+}
+void G()
+{
+    if (str[i] == '+')
+    {
+        i++;
+        printf("%d G--&gt;+TG\n", num++);
+        T();
+        G();
+    }
+    else
+    {
+        printf("%d G--&gt;&amp;\n", num++);
+    }
+}
+void F()
+{
+    if (str[i] == '(')
+    {
+        i++;
+        printf("%d F--&gt;(E)\n", num++);
+        E();
+        if (str[i] == ')')
+        {
+            i++;
+        }
+        else
+        {
+            printf("error\n");
+            exit(0);
+        }
+    }
+    else if (str[i] == 'i')
+    {
+        i++;
+        printf("%d F--&gt;i\n", num++);
+    }
+    else
+    {
+        printf("error\n");
+        exit(0);
+    }
+}
+void S()
+{
+    if (str[i] == '*')
+    {
+        i++;
+        printf("%d S--&gt;*FS\n", num++);
+        F();
+        S();
+    }
+    else
+    {
+        printf("%d S--&gt;&amp;\n", num++);
+    }
+}
